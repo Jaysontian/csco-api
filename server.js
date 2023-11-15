@@ -1,15 +1,17 @@
 const express = require('express');
 const mongoose = require('mongoose');
-// const photosRouter = require('./routes/api/photos'); // Import routes
+const cors = require('cors');
+const photosRouter = require('./routes/api/photos'); // Import routes
 
 
 const app = express();
-const PORT = process.env.PORT || 6000;
+const PORT = process.env.PORT || 4000;
+
+app.use(cors());
+app.use(express.json());
 
 // Define routes and controllers here...
-// app.use('/api/photos', photosRouter); // Use the photos routes
-app.use(express.json());
-// app.use(cors());
+app.use('/api/photos', photosRouter); // Use the photos routes
 
 // Connect to MongoDB (make sure MongoDB is installed and running)
 mongoose.connect('mongodb+srv://rishabhsharma:w4CtshF5dHiELuGM@cluster0.echuaqk.mongodb.net/?retryWrites=true&w=majority', {
