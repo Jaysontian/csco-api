@@ -7,8 +7,8 @@ const photosRouter = require('./routes/api/photos'); // Import routes
 const app = express();
 const PORT = process.env.PORT || 4000;
 
-app.use(cors());
-app.use(express.json());
+app.use(cors()); // Middleware since backend and frontend are different folders
+app.use(express.json()); // JSON Parser
 
 // Define routes and controllers here...
 app.use('/api/photos', photosRouter); // Use the photos routes
