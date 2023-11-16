@@ -1,6 +1,6 @@
 // routes/api/photos.js
 const express = require('express');
-const Photo = require('../../models/Photo'); // Import the model
+const Photo = require('../../models/PhotoSchema'); // Import the model
 const router = express.Router();
 
 router.get('/', async (req, res) => {
