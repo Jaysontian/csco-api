@@ -1,4 +1,4 @@
-// models/Photo.js
+// models/PhotoSchema.js
 const mongoose = require('mongoose');
 
 const PhotoSchema = new mongoose.Schema({
