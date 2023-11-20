@@ -17,7 +17,7 @@ app.use('/api/logins', loginRouter); // Use the photos routes
 
 // Connect to MongoDB (make sure MongoDB is installed and running)
 
-const URI = "mongodb+srv://jaysontian:828ny74r@cluster0.1ovugeu.mongodb.net/?retryWrites=true&w=majority"
+const URI = "mongodb+srv://rishabhsharma:w4CtshF5dHiELuGM@cluster0.echuaqk.mongodb.net/?retryWrites=true&w=majority"
 mongoose.connect(URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
