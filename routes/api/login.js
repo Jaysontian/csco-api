@@ -20,8 +20,21 @@ router.post('/', async (req, res) => {
   });
 
   try {
+    // perform check for whether user exists or not
+    const user = await LoginInfo.findOne({username: req.body.username });
+    console.log(user)
+    if (user) {
+      if (user.password == req.body.password){
+        console.log("Existing user logged in successfully.")
+        return res.status(200).send({ message: "User logged in successfully"});
+      }
+      return res.status(400).send({ message: "Existing user: password incorrect" });
+    }
+
+    // Username DNE, so we create a new account
     const savedLogin = await newLogin.save();
     res.status(201).json(savedLogin);
+
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
