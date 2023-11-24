@@ -4,7 +4,7 @@ const cors = require('cors');
 const photosRouter = require('./routes/api/photos'); // Import routes
 const loginRouter = require('./routes/api/login'); // Import routes
 const postRouter = require('./routes/api/post'); // Import routes
-
+const userRoutes = require('./routes/api/getUserData');
 
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -16,6 +16,8 @@ app.use(express.json()); // JSON Parser
 app.use('/api/photos', photosRouter); // Use the photos routes
 app.use('/api/logins', loginRouter); // Use the login routes
 app.use('/api/posts', postRouter); // Use the post routes
+app.use('/api/user-page', userRoutes);
+
 
 
 // Connect to MongoDB (make sure MongoDB is installed and running)

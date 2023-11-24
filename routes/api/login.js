@@ -31,13 +31,12 @@ router.post('/', async (req, res) => {
         const payload = { id: user.id };
         const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
         return res.json({ token });
-
-        // return res.status(200).json({ message: "User logged in successfully", data: newUser});
       }
       res.status(404)
       res.statusMessage = "Username doesn't exist"
       return res.json({ message: "Username doesn't exist" });
     } 
+
     // Signup attempt
     else {
       if (!user) {
@@ -45,9 +44,8 @@ router.post('/', async (req, res) => {
         const payload = { id: savedUser.id };
         const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
         return res.json({ token });
-        // return res.status(200).json({ message: "User signed up successfully", data: newUser });
       }
-      res.status(405)
+      res.status(401)
       res.statusMessage = "Username already exists"
       return res.json({ message: "Username already exists"});
     }    
