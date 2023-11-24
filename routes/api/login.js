@@ -1,7 +1,6 @@
 // routes/api/login.js
 const express = require('express');
 const LoginInfo = require('../../models/LoginSchema');
-const Photo = require('../../models/LoginSchema'); // Import the model
 const router = express.Router();
 
 router.post('/', async (req, res) => {
