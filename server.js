@@ -1,7 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const photosRouter = require('./routes/api/photos'); // Import routes
 const loginRouter = require('./routes/api/login'); // Import routes
 const postRouter = require('./routes/api/post'); // Import routes
 const userRoutes = require('./routes/api/getUserData');
@@ -13,7 +12,6 @@ app.use(cors()); // Middleware since backend and frontend are different folders
 app.use(express.json()); // JSON Parser
 
 // Define routes and controllers here...
-app.use('/api/photos', photosRouter); // Use the photos routes
 app.use('/api/logins', loginRouter); // Use the login routes
 app.use('/api/posts', postRouter); // Use the post routes
 app.use('/api/user-page', userRoutes);
