@@ -15,9 +15,9 @@ router.post('/', async (req, res) => {
       password: req.body.password
     });  
 
-    // perform check for whether user exists or not
+    // Attempts to find request username within database
     const user = await User.findOne({username: req.body.username });    
-    const login_type = req.body.login_type;    
+    const login_type = req.body.logintype;    
 
     // Login Attempt
     if (login_type == "LOGIN") {
@@ -34,7 +34,7 @@ router.post('/', async (req, res) => {
       }
       res.status(404)
       res.statusMessage = "Username doesn't exist"
-      return res.json({ message: "Username doesn't exist" });
+      return res.json({ message: "Username doesn't exist, click Sign Up!" });
     } 
 
     // Signup attempt
