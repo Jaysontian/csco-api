@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const loginRouter = require('./routes/api/login'); // Import routes
 const postRouter = require('./routes/api/post'); // Import routes
-const userRoutes = require('./routes/api/getUserData');
+const userRouter = require('./routes/api/getUserData');
+const searchRouter = require('./routes/api/search');
 
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -14,7 +15,8 @@ app.use(express.json()); // JSON Parser
 // Define routes and controllers here...
 app.use('/api/logins', loginRouter); // Use the login routes
 app.use('/api/posts', postRouter); // Use the post routes
-app.use('/api/user-page', userRoutes);
+app.use('/api/user-page', userRouter);
+app.use('/api/search', searchRouter);
 
 
 
