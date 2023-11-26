@@ -17,7 +17,7 @@ router.post('/', async (req, res) => {
 
     // Attempts to find request username within database
     const user = await User.findOne({username: req.body.username });    
-    const login_type = req.body.login_type;    
+    const login_type = req.body.logintype;    
 
     // Login Attempt
     if (login_type == "LOGIN") {

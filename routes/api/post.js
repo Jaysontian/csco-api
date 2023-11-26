@@ -29,7 +29,6 @@ router.post('/', verifyToken, async (req, res) => {
     const savedPost = await newPost.save();
     return res.status(200).json({ message: "Posted successfully", data: newPost }); 
   } catch (err) {
-    console.log("NAHHH " + err.message)
     return res.status(400).json({ message: err.message });
   }
 });
