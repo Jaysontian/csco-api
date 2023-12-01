@@ -22,7 +22,7 @@ router.post('/', upload.single('image'), verifyToken, async (req, res, next) => 
     const newImage = new Post({
         userid: req.user.id,
         imageUrl: req.file.path,
-        caption: req.file.originalname,
+        caption: req.body.caption,
         date: Date.now(),
     });
 
