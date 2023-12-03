@@ -6,6 +6,7 @@ const postRouter = require('./routes/api/post'); // Import routes
 const imageRouter = require('./routes/api/upload'); // Import routes
 const userRouter = require('./routes/api/getUserData');
 const searchRouter = require('./routes/api/search');
+const deleteRouter = require('./routes/deleteRouter');
 
 const path = require('path')
 
@@ -23,6 +24,7 @@ app.use('/api/posts', postRouter); // Use the post routes
 app.use('/api/user-page', userRouter);
 app.use('/api/search', searchRouter);
 app.use('/api/image', imageRouter);
+app.use('/api/delete', deleteRouter);
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 
