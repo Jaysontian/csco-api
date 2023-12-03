@@ -6,7 +6,7 @@ const postRouter = require('./routes/api/post'); // Import routes
 const imageRouter = require('./routes/api/upload'); // Import routes
 const userRouter = require('./routes/api/getUserData');
 const searchRouter = require('./routes/api/search');
-const deleteRouter = require('./routes/deleteRouter');
+const deleteRouter = require('./routes/api/delete');
 
 const path = require('path')
 

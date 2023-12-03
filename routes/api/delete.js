@@ -1,6 +1,5 @@
 const express = require('express'); // Import express framework
 const router = express.Router(); //
-const Post = require('../models/PostSchema');
 
 router.delete('/delete', async(req,res) => {
     try{
@@ -12,4 +11,4 @@ router.delete('/delete', async(req,res) => {
     }
 });
 
-module.exports = deleteRouter;
+module.exports = router;
