@@ -1,7 +1,12 @@
+
 const express = require('express');
 const verifyToken = require('./verifyToken');
 const Post = require('../../models/PostSchema');
+const OpenAI = require("openai");
 const router = express.Router();
+require('dotenv').config();
+
+const openai = new OpenAI({apiKey: process.env.API_KEY})
 
 router.get('/', verifyToken, async (req, res) => {
   try {
@@ -18,10 +23,28 @@ router.get('/', verifyToken, async (req, res) => {
 });
 
 router.post('/', verifyToken, async (req, res) => {
+  const imgUrl = req.body.post;
+  const response = await openai.chat.completions.create({
+    model: "gpt-4-vision-preview",
+    messages: [
+      {
+        role: "user",
+        content: [
+          { type: "text", text: "Describe the vibe of this image in 3 words. Note: the format should be three words all lowercase separated by spaces." },
+          {
+            type: "image_url",
+            image_url: {
+              "url": imgUrl,
+            },},],},],});
+  const vibes = response.choices[0].message.content;
+  const vibesArr = vibes.split(/\W+/).filter(Boolean);
+  console.log(vibesArr);
+
   const newPost = new Post({
     userid: req.user.id,
     imageUrl: req.body.post,
     caption: req.body.caption,
+    vibes: vibesArr,
     date: req.body.created_at
   });
 

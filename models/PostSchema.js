@@ -13,6 +13,10 @@ const PostSchema = new mongoose.Schema({
     caption: {
       type: String
     },
+    vibes: {
+      type: Array,
+      required: true
+    },
     created_at: {
       type: Date,
       default: Date.now
