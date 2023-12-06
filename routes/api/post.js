@@ -24,22 +24,36 @@ router.get('/', verifyToken, async (req, res) => {
 });
 
 router.post('/', verifyToken, async (req, res) => {
-  const imgUrl = req.body.post;
-  const response = await openai.chat.completions.create({
-    model: "gpt-4-vision-preview",
-    messages: [
-      {
-        role: "user",
-        content: [
-          { type: "text", text: "Describe the vibe of this image in 3 words. Note: the format should be three words all lowercase separated by spaces." },
+  const caption = req.body.caption;
+  let vibesArr = [];
+  if (caption !== "null") {
+      const response = await openai.chat.completions.create({
+          model: "gpt-4",
+          messages: [
           {
-            type: "image_url",
-            image_url: {
-              "url": imgUrl,
-            },},],},],});
-  const vibes = response.choices[0].message.content;
-  const vibesArr = vibes.split(/\W+/).filter(Boolean);
-  console.log(vibesArr);
+              role: "user",
+              content: "Give a three adjective prediction for the vibe of an image with the caption: " + caption + ".Note: the format should be three words all lowercase separated by spaces. "}]
+      });
+      const vibes = response.choices[0].message.content;
+      vibesArr = vibes.split(/\W+/).filter(Boolean);
+  }
+  console.log(vibesArr)
+  // const imgUrl = req.body.post;
+  // console.log("URRHKJSHKJHKJSH: " + imgUrl)
+  // const response = await openai.chat.completions.create({
+  //   model: "gpt-4-vision-preview",
+  //   messages: [
+  //     {
+  //       role: "user",
+  //       content: [
+  //         { type: "text", text: "Describe the vibe of this image in 3 words. Note: the format should be three words all lowercase separated by spaces." },
+  //         {
+  //           type: "image_url",
+  //           image_url: imgUrl,},],},],});
+  // console.log("RESP" + response)
+  // const vibes = response.choices[0].message.content;
+  // const vibesArr = vibes.split(/\W+/).filter(Boolean);
+  // console.log(vibesArr);
 
   const newPost = new Post({
     userid: req.user.id,
