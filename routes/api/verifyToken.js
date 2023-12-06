@@ -8,6 +8,10 @@ function verifyToken(req, res, next) {
     if (bearerToken == "HOME") {
       req.type = "HOME"
       next();
+    } else if (bearerToken.substring(0,3) == "DEL"){
+      req.type = "DEL"
+      req.del_id = bearerToken.substring(3, bearerToken.length)
+      next();
     } else {
 
       jwt.verify(bearerToken, process.env.JWT_SECRET, (err, decoded) => {

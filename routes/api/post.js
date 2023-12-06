@@ -56,4 +56,19 @@ router.post('/', verifyToken, async (req, res) => {
   }
 });
 
+router.delete('/', verifyToken, async (req, res) => {
+  try {
+    if (req.type == "DEL") {
+      Post.deleteOne({ _id: req.del_id }, (err, result) => {
+        if (err) {
+            res.status(500).send({ error: 'An error has occurred' });
+        } else {
+            res.send({ message: 'Item has been deleted' });
+        }
+    })}
+  } catch (err) {
+    return res.status(400).json({ message: err.message });
+  }
+});
+
 module.exports = router;
