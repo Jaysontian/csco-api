@@ -3,6 +3,7 @@ const express = require('express');
 const verifyToken = require('./verifyToken');
 const Post = require('../../models/PostSchema');
 const OpenAI = require("openai");
+const {ObjectId} = require('mongodb');
 const router = express.Router();
 require('dotenv').config();
 
@@ -59,14 +60,18 @@ router.post('/', verifyToken, async (req, res) => {
 router.delete('/', verifyToken, async (req, res) => {
   try {
     if (req.type == "DEL") {
-      Post.deleteOne({ _id: req.del_id }, (err, result) => {
-        if (err) {
-            res.status(500).send({ error: 'An error has occurred' });
-        } else {
-            res.send({ message: 'Item has been deleted' });
-        }
-    })}
+      const post = Post.deleteOne({ _id: new ObjectId(req.del_id) })
+        .then(result => {
+          console.log("Delete successful", result.deletedCount);
+          return res.status(200).json({ message: "Delete Sucessful" });
+        })
+        .catch(err => {
+          console.error("Delete failed", err);
+          return res.status(500).json({ message: err.message });
+        });
+    }
   } catch (err) {
+    console.log(err.message)
     return res.status(400).json({ message: err.message });
   }
 });
