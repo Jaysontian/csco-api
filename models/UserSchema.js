@@ -1,6 +1,9 @@
-const mongoose = require('mongoose');
-const bcrypt = require('bcrypt')
+// schema for user
 
+const mongoose = require('mongoose');
+const bcrypt = require('bcrypt'); // library used to hash and store passwords
+
+// defines User model and required fields
 const UserSchema = new mongoose.Schema({
   username: {
     type: String,
@@ -10,7 +13,7 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  created_at: {
+  created_at: { // date account created
     type: Date,
     default: Date.now
   }
@@ -36,6 +39,6 @@ UserSchema.pre('save', function(next) {
   });
 });
 
-const User = mongoose.model('User', UserSchema);
+const User = mongoose.model('User', UserSchema); // export schema as model for Mongo
 
 module.exports = User;

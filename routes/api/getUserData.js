@@ -2,7 +2,6 @@ const express = require('express');
 const verifyToken = require('./verifyToken');
 const User = require('../../models/UserSchema'); // Assuming you have a User model
 const Post = require('../../models/PostSchema'); // Assuming you have a Post model
-// const app = express();
 const router = express.Router();
 
 
