@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+require('dotenv').config();
 const loginRouter = require('./routes/api/login'); // Import routes
 const postRouter = require('./routes/api/post'); // Import routes
 const imageRouter = require('./routes/api/upload'); // Import routes
@@ -27,7 +28,7 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 
 // Connect to MongoDB (make sure MongoDB is installed and running)
-const URI = "mongodb+srv://rishabhsharma:w4CtshF5dHiELuGM@cluster0.echuaqk.mongodb.net/?retryWrites=true&w=majority"
+const URI = process.env.MONGO_URI;
 mongoose.connect(URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
